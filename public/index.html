@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>传输原型</title>
+    <meta charset="UTF-8"/>
+    <script type="text/javascript" src='javascripts/jquery-1.7.1.min.js'></script>
+</head>
+<body>
+<h1>传输测试</h1>
+
+<div><img id="image"></div>
+<button id="button1">提交</button>
+
+<script>
+    $('#button1').on('click',function(){
+        $.ajax({
+           url:'http://localhost:3000/',
+           type:'post',
+           data:'image='+$('#image')[0].src,
+           success:function(){
+               console.log('send ok');
+           }
+        });
+    });
+
+    $(document).ready(function () {
+        $.ajax({
+            url:'data.txt',
+            success:function (data) {
+                $('#image')[0].src = data;
+            }
+        });
+    });
+</script>
+</body>
+</html>
